@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<p>Image To Use: </p>
+<img id="scream" width="220" height="277"
+src="screamteam.jpg" alt="The Scream">
+
+<canvas id="gameCanvas" width="400" height="400" style="border:2px solid #000000;"></canvas>
+
+<script type="text/javascript">
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0,0,150,75);
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.moveTo(0,300);
+ctx.lineTo(400,300);
+ctx.stroke();
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.beginPath();
+ctx.arc(100,200,50,0,2*Math.PI);
+ctx.stroke();
+
+var c=document.getElementById("gameCanvas");
+var ctx=c.getContext("2d");
+//Create Gradient
+var grd=ctx.createLinearGradient(0,0,400,0);
+grd.addColorStop(0,"red");
+grd.addColorStop(1,"white");
+//Fill with gradient
+ctx.fillStyle=grd;
+ctx.fillRect(200,100,150,75);
+
+var c=document.getElementById("gameCanvas");
+var ctx=c.getContext("2d");
+//Create Gradient
+var grd=ctx.createRadialGradient(275,50,5,290,60,100);
+grd.addColorStop(0,"blue");
+grd.addColorStop(1,"red");
+//Fill with Gradient
+ctx.fillStyle = grd;
+ctx.fillRect(200,10,150,80);
+//Using fill text
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "black";
+ctx.font = "30px Arial";
+ctx.fillText("Waagwan",10,120);
+//Using Stroke Text
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "30px Arial";
+ctx.strokeText("Ken ken Kabarae",10,160);
+//Add Color and center text
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "30px Comic Sans MS";
+ctx.fillStyle = "green";
+ctx.textAlign = "center";
+ctx.fillText("Yaasas", canvas.width/2,canvas.height/2);
+//Draw Image
+window.onload = function(){
+	var canvas = document.getElementById("gameCanvas");
+	var ctx = canvas.getContext("2d");
+	var img = document.getElementById("scream");
+	ctx.drawImage(img,10,10);
+};
+
+</script>
+
+</body>
+</html>

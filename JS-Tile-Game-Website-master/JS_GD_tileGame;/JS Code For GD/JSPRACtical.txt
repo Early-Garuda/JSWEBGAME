@@ -1,0 +1,520 @@
+JSLEaRNING
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+All drawing on the HTML canvas must be done with JavaScript:
+
+Step 1: Find the Canvas Element
+
+First of all, you must find the <canvas> element.
+
+This is done by using the HTML DOM method getElementById():
+var canvas = document.getElementById("myCanvas");
+Step 2: Create a Drawing Object
+
+Secondly, you need a drawing object for the canvas.
+
+The getContext() is a built-in HTML object, with properties and methods for drawing:
+var ctx = canvas.getContext("2d");
+Step 3: Draw on the Canvas
+
+Finally, you can draw on the canvas.
+
+Set the fill style of the drawing object to the color red:
+ctx.fillStyle = "#FF0000";
+
+The fillStyle property can be a CSS color, a gradient, or a pattern. The default fillStyle is black.
+
+The fillRect(x,y,width,height) method draws a rectangle, filled with the fill style, on the canvas:
+ctx.fillRect(0,0,150,75);
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+<canvas id="gameCanvas" width="400" height="400" style="border:2px solid #000000;"></canvas>
+
+<script type="text/javascript">
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0,0,150,75);
+
+</script>
+
+</body>
+</html>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+Canvas Coordinates
+
+The HTML canvas is a two-dimensional grid.
+
+The upper-left corner of the canvas has the coordinates (0,0)
+
+In the previous chapter, you saw this method used: fillRect(0,0,150,75).
+
+This means: Start at the upper-left corner (0,0) and draw a 150x75 pixels rectangle.
+Coordinates Example
+
+Mouse over the rectangle below to see its x and y coordinates:
+X
+Y
+Draw a Line
+
+To draw a straight line on a canvas, use the following methods:
+
+    moveTo(x,y) - defines the starting point of the line
+    lineTo(x,y) - defines the ending point of the line
+
+To actually draw the line, you must use one of the "ink" methods, like stroke().
+Example
+
+Define a starting point in position (0,0), and an ending point in position (200,100). Then use the stroke() method to actually draw the line:
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.moveTo(0,0);
+ctx.lineTo(200,100);
+ctx.stroke();
+Draw a Circle
+
+To draw a circle on a canvas, use the following methods:
+
+    beginPath() - begins a path
+    arc(x,y,r,startangle,endangle) - creates an arc/curve. To create a circle with arc(): Set start angle to 0 and end angle to 2*Math.PI. The x and y parameters define the x- and y-coordinates of the center of the circle. The r parameter defines the radius of the circle.
+
+Example
+
+Define a circle with the arc() method. Then use the stroke() method to actually draw the circle:
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.beginPath();
+ctx.arc(95,50,40,0,2*Math.PI);
+ctx.stroke();
+ 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+<canvas id="gameCanvas" width="400" height="400" style="border:2px solid #000000;"></canvas>
+
+<script type="text/javascript">
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0,0,150,75);
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.moveTo(0,300);
+ctx.lineTo(400,300);
+ctx.stroke();
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.beginPath();
+ctx.arc(100,200,50,0,2*Math.PI);
+ctx.stroke();
+
+</script>
+
+</body>
+</html>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+Canvas - Gradients
+
+Gradients can be used to fill rectangles, circles, lines, text, etc. Shapes on the canvas are not limited to solid colors.
+
+There are two different types of gradients:
+
+    createLinearGradient(x,y,x1,y1) - creates a linear gradient
+    createRadialGradient(x,y,r,x1,y1,r1) - creates a radial/circular gradient
+
+Once we have a gradient object, we must add two or more color stops.
+
+The addColorStop() method specifies the color stops, and its position along the gradient. Gradient positions can be anywhere between 0 to 1.
+
+To use the gradient, set the fillStyle or strokeStyle property to the gradient, then draw the shape (rectangle, text, or a line).
+Using createLinearGradient()
+Example
+
+Create a linear gradient. Fill rectangle with the gradient:
+
+JavaScript:
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+
+// Create gradient
+var grd=ctx.createLinearGradient(0,0,200,0);
+grd.addColorStop(0,"red");
+grd.addColorStop(1,"white");
+
+// Fill with gradient
+ctx.fillStyle=grd;
+ctx.fillRect(10,10,150,80); 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+<canvas id="gameCanvas" width="400" height="400" style="border:2px solid #000000;"></canvas>
+
+<script type="text/javascript">
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0,0,150,75);
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.moveTo(0,300);
+ctx.lineTo(400,300);
+ctx.stroke();
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.beginPath();
+ctx.arc(100,200,50,0,2*Math.PI);
+ctx.stroke();
+
+var c=document.getElementById("gameCanvas");
+var ctx=c.getContext("2d");
+//Create Gradient
+var grd=ctx.createLinearGradient(0,0,200,0);
+grd.addColorStop(0,"red");
+grd.addColorStop(1,"white");
+//Fill with gradient
+ctx.fillStyle=grd;
+ctx.fillRect(10,10,150,80);
+
+</script>
+
+</body>
+</html>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Using createRadialGradient():
+Example
+
+Create a radial/circular gradient. Fill rectangle with the gradient:
+
+JavaScript:
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+
+// Create gradient
+var grd=ctx.createRadialGradient(75,50,5,90,60,100);
+grd.addColorStop(0,"red");
+grd.addColorStop(1,"white");
+
+// Fill with gradient
+ctx.fillStyle = grd;
+ctx.fillRect(10,10,150,80); 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+<canvas id="gameCanvas" width="400" height="400" style="border:2px solid #000000;"></canvas>
+
+<script type="text/javascript">
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0,0,150,75);
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.moveTo(0,300);
+ctx.lineTo(400,300);
+ctx.stroke();
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.beginPath();
+ctx.arc(100,200,50,0,2*Math.PI);
+ctx.stroke();
+
+var c=document.getElementById("gameCanvas");
+var ctx=c.getContext("2d");
+//Create Gradient
+var grd=ctx.createLinearGradient(0,0,400,0);
+grd.addColorStop(0,"red");
+grd.addColorStop(1,"white");
+//Fill with gradient
+ctx.fillStyle=grd;
+ctx.fillRect(200,100,150,75);
+
+var c=document.getElementById("gameCanvas");
+var ctx=c.getContext("2d");
+//Create Gradient
+var grd=ctx.createRadialGradient(275,50,5,290,60,100);
+grd.addColorStop(0,"blue");
+grd.addColorStop(1,"White");
+//Fill with Gradient
+ctx.fillStyle = grd;
+ctx.fillRect(200,10,150,80);
+
+
+
+</script>
+
+</body>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Drawing Text on the Canvas
+
+To draw text on a canvas, the most important property and methods are:
+
+    font - defines the font properties for the text
+    fillText(text,x,y) - draws "filled" text on the canvas
+    strokeText(text,x,y) - draws text on the canvas (no fill)
+
+Using fillText()
+Example
+
+Set font to 30px "Arial" and write a filled text on the canvas:
+
+JavaScript:
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "30px Arial";
+ctx.fillText("Hello World",10,50);
+Using strokeText()
+Example
+
+Set font to 30px "Arial" and write a text, with no fill, on the canvas:
+
+JavaScript:
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "30px Arial";
+ctx.strokeText("Hello World",10,50);
+Add Color and Center Text
+Example
+
+Set font to 30px "Comic Sans MS" and write a filled red text in the center of the canvas:
+
+JavaScript:
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "30px Comic Sans MS";
+ctx.fillStyle = "red";
+ctx.textAlign = "center";
+ctx.fillText("Hello World", canvas.width/2, canvas.height/2);
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+<canvas id="gameCanvas" width="400" height="400" style="border:2px solid #000000;"></canvas>
+
+<script type="text/javascript">
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0,0,150,75);
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.moveTo(0,300);
+ctx.lineTo(400,300);
+ctx.stroke();
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.beginPath();
+ctx.arc(100,200,50,0,2*Math.PI);
+ctx.stroke();
+
+var c=document.getElementById("gameCanvas");
+var ctx=c.getContext("2d");
+//Create Gradient
+var grd=ctx.createLinearGradient(0,0,400,0);
+grd.addColorStop(0,"red");
+grd.addColorStop(1,"white");
+//Fill with gradient
+ctx.fillStyle=grd;
+ctx.fillRect(200,100,150,75);
+
+var c=document.getElementById("gameCanvas");
+var ctx=c.getContext("2d");
+//Create Gradient
+var grd=ctx.createRadialGradient(275,50,5,290,60,100);
+grd.addColorStop(0,"blue");
+grd.addColorStop(1,"red");
+//Fill with Gradient
+ctx.fillStyle = grd;
+ctx.fillRect(200,10,150,80);
+//Using fill text
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "black";
+ctx.font = "30px Arial";
+ctx.fillText("Waagwan",10,120);
+//Using Stroke Text
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "30px Arial";
+ctx.strokeText("Ken ken Kabarae",10,160);
+//Add Color and center text
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "30px Comic Sans MS";
+ctx.fillStyle = "green";
+ctx.textAlign = "center";
+ctx.fillText("Yaasas", canvas.width/2,canvas.height/2);
+
+</script>
+
+</body>
+</html>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Canvas - Images
+
+To draw an image on a canvas, use the following method:
+
+    drawImage(image,x,y)
+
+Example
+
+The Scream
+
+JavaScript:
+window.onload = function() {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById("scream");
+    ctx.drawImage(img, 10, 10);
+}; 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<p>Image To Use: </p>
+<img id="scream" width="220" height="277"
+src="screamteam.jpg" alt="The Scream">
+
+<canvas id="gameCanvas" width="400" height="400" style="border:2px solid #000000;"></canvas>
+
+<script type="text/javascript">
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0,0,150,75);
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.moveTo(0,300);
+ctx.lineTo(400,300);
+ctx.stroke();
+
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.beginPath();
+ctx.arc(100,200,50,0,2*Math.PI);
+ctx.stroke();
+
+var c=document.getElementById("gameCanvas");
+var ctx=c.getContext("2d");
+//Create Gradient
+var grd=ctx.createLinearGradient(0,0,400,0);
+grd.addColorStop(0,"red");
+grd.addColorStop(1,"white");
+//Fill with gradient
+ctx.fillStyle=grd;
+ctx.fillRect(200,100,150,75);
+
+var c=document.getElementById("gameCanvas");
+var ctx=c.getContext("2d");
+//Create Gradient
+var grd=ctx.createRadialGradient(275,50,5,290,60,100);
+grd.addColorStop(0,"blue");
+grd.addColorStop(1,"red");
+//Fill with Gradient
+ctx.fillStyle = grd;
+ctx.fillRect(200,10,150,80);
+//Using fill text
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "black";
+ctx.font = "30px Arial";
+ctx.fillText("Waagwan",10,120);
+//Using Stroke Text
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "30px Arial";
+ctx.strokeText("Ken ken Kabarae",10,160);
+//Add Color and center text
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "30px Comic Sans MS";
+ctx.fillStyle = "green";
+ctx.textAlign = "center";
+ctx.fillText("Yaasas", canvas.width/2,canvas.height/2);
+//Draw Image
+window.onload = function(){
+	var canvas = document.getElementById("gameCanvas");
+	var ctx = canvas.getContext("2d");
+	var img = document.getElementById("scream");
+	ctx.drawImage(img,10,10);
+};
+
+</script>
+
+</body>
+</html>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+sample Image Example
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Image to use:</p>
+
+<img id="scream" width="220" height="277"
+src="pic_the_scream.jpg" alt="The Scream">
+
+<p>Canvas:</p>
+
+<canvas id="myCanvas" width="240" height="297"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<script>
+window.onload = function() {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById("scream");
+   ctx.drawImage(img, 10, 10);
+};
+</script>
+
+</body>
+</html>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
